@@ -1,0 +1,55 @@
+diff -ur neon-0.29.5/configure neon-0.29.5.new/configure
+--- neon-0.29.5/configure	2010-10-14 17:10:02.000000000 +0200
++++ neon-0.29.5.new/configure	2011-01-04 16:04:31.323197624 +0100
+@@ -14121,6 +14121,9 @@
+    NEON_LIBS=$ne_save_LIBS
+ fi
+ 
++echo "Settings LDFLAGS TO $MINITAGE_LDFLAGS"
++NEON_LIBS="$MINITAGE_LDFLAGS -lssl -lcrypto -lexpat -lz"  
++export NEON_LIBS  
+ 
+ # Check whether --with-libproxy was given.
+ if test "${with_libproxy+set}" = set; then
+@@ -23052,7 +23055,7 @@
+ 
+        CPPFLAGS="$CPPFLAGS -I$ne_expdir"
+        if test "x${NEON_TARGET}" = "xlibneon.la"; then
+-         NEON_LTLIBS=$with_expat
++         NEON_LTLIBS="$LD_FLAGS -lexpat -lxml"
+        else
+          # no dependency on libexpat => crippled libneon, so do partial install
+          ALLOW_INSTALL=lib
+@@ -25067,6 +25070,9 @@
+ fi
+ 
+ 
++echo "Settings LDFLAGS TO $MINITAGE_LDFLAGS"
++NEON_LIBS="$MINITAGE_LDFLAGS -lssl -lcrypto -lexpat -lz"  
++export NEON_LIBS  
+ # Pass the interface version on to libtool when linking libneon.la
+ NEON_LINK_FLAGS="-version-info ${NE_LIBTOOL_VERSINFO}"
+ # If any non-default ABI variations are used, add them to the SONAME:
+@@ -27314,6 +27320,9 @@
+ 
+ { (exit 0); exit 0; }
+ _ACEOF
++
++
++
+ chmod +x $CONFIG_STATUS
+ ac_clean_files=$ac_clean_files_save
+ 
+@@ -27323,6 +27332,7 @@
+    { (exit 1); exit 1; }; }
+ 
+ 
++
+ # configure is writing to config.log, and then calls config.status.
+ # config.status does its own redirection, appending to config.log.
+ # Unfortunately, on DOS this fails, as config.log is still kept open
+@@ -27386,3 +27396,4 @@
+ WARNING: This neon library should not be installed for use by applications.
+ " >&6;};;
+ esac
++
