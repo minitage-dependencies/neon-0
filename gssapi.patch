@@ -1,0 +1,24 @@
+diff -ur neon-0.29.6/configure neon-0.29.6.new/configure
+--- neon-0.29.6/configure	2011-05-03 14:25:31.000000000 +0200
++++ neon-0.29.6.new/configure	2012-09-07 12:17:33.614977016 +0200
+@@ -7172,20 +7172,7 @@
+ 
+ done
+ 
+-      # Older versions of MIT Kerberos lack GSS_C_NT_HOSTBASED_SERVICE
+-      ac_fn_c_check_decl "$LINENO" "GSS_C_NT_HOSTBASED_SERVICE" "ac_cv_have_decl_GSS_C_NT_HOSTBASED_SERVICE" "#ifdef HAVE_GSSAPI_GSSAPI_H
+-#include <gssapi/gssapi.h>
+-#else
+-#include <gssapi.h>
+-#endif
+-"
+-if test "x$ac_cv_have_decl_GSS_C_NT_HOSTBASED_SERVICE" = x""yes; then :
+ 
+-else
+-
+-$as_echo "#define GSS_C_NT_HOSTBASED_SERVICE gss_nt_service_name" >>confdefs.h
+-
+-fi
+ 
+ fi
+ done
